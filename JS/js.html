@@ -1,0 +1,111 @@
+<html>
+    <style>
+        body
+            {
+     background-image: url('rickroll_4k.jpg');
+     background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: 100% 100%;
+ 
+ 
+ 
+            }
+            #myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+};
+ 
+     </style>
+    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .heart {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="item" id="item1">
+        <span>IDK 1</span>
+        <button class="minus">-</button>
+        <span class="quantity">0</span>
+        <button class="plus">+</button>
+        <span class="heart">&#x2661;</span>
+        <button class="delete">Delete</button>
+    </div>
+    <div class="item" id="item2">
+        <span>IDK 2</span>
+        <button class="minus">-</button>
+        <span class="quantity">0</span>
+        <button class="plus">+</button>
+        <span class="heart">&#x2661;</span>
+        <button class="delete">Delete</button>
+    </div>
+    <div id="total">Total: DT0</div>
+
+    <script>
+        const items = document.querySelectorAll('.item');
+        const totalElement = document.getElementById('total');
+        let total = 0;
+
+        items.forEach(item => {
+            const plusBtn = item.querySelector('.plus');
+            const minusBtn = item.querySelector('.minus');
+            const quantityElement = item.querySelector('.quantity');
+            const heartIcon = item.querySelector('.heart');
+            const deleteBtn = item.querySelector('.delete');
+
+            let quantity = 0;
+
+            plusBtn.addEventListener('click', () => {
+                quantity++;
+                quantityElement.textContent = quantity;
+                updateTotal();
+            });
+
+            minusBtn.addEventListener('click', () => {
+                if (quantity > 0) {
+                    quantity--;
+                    quantityElement.textContent = quantity;
+                    updateTotal();
+                }
+            });
+
+            heartIcon.addEventListener('click', () => {
+                heartIcon.classList.toggle('liked');
+            });
+
+            deleteBtn.addEventListener('click', () => {
+                item.remove();
+                updateTotal();
+            });
+        });
+
+        function updateTotal() {
+            total = 0;
+            items.forEach(item => {
+                const quantity = parseInt(item.querySelector('.quantity').textContent);
+                total += quantity * 10; 0
+            });
+            totalElement.textContent = `Total: DT ${total}`;
+        }
+    </script>
+</body>
+</html>
